@@ -1,49 +1,44 @@
-<!DOCTYPE html>
+<?php
 
-<?php session_start(); ?>
+session_start();
 
-<html>
-  <head>
-    <title>Gerenciador de Tarefas</title>
-  </head>
-  <body>
-    <h1>Gerenciador de Tarefas</h1>
+if (isset($_GET['nome']) && $_GET['nome'] != '') {
+  $tarefa = array();
 
-    <form>
-      <fieldset>
-        <legend>Nova Tarefa</legend>
-        <label>
-          Tarefa:
-          <input type="text" name="nome">
-        </label>
-        <input type="submit" value="Cadastrar">
-      </fieldset>
-    </form>
+  $tarefa['nome'] = $_GET['nome'];
 
-    <?php
+  if (isset($_GET['descricao'])) {
+    $tarefa['descricao'] = $_GET['descricao'];
+  } else {
+    $tarefa['descricao'] = '';
+  }
 
-      if (isset($_GET['nome'])) {
-        $_SESSION['lista_tarefas'][] = $_GET['nome'];
-      }
+  if (isset($_GET['prazo'])) {
+    $tarefa['prazo'] = $_GET['prazo'];
+  } else {
+    $tarefa['prazo'] = '';
+  }
 
-      $lista_tarefas = array();
+  $tarefa['prioridade'] = $_GET['prioridade'];
 
-      if (isset($_SESSION['lista_tarefas'])) {
-        $lista_tarefas = $_SESSION['lista_tarefas'];
-      }
-      
-    ?>
+  if (isset($_GET['concluida'])) {
+    $tarefa['concluida'] = $_GET['concluida'];
+  } else {
+    $tarefa['concluida'] = '';
+  }
 
-    <table>
-      <tr>
-        <th>Tarefas</th>
-      </tr>
-       <?php foreach ($lista_tarefas as $tarefa) : ?>
-        <tr>
-          <td><?php echo $tarefa; ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+  $_SESSION['lista_tarefas'][] = $tarefa;
+}
 
-  </body>
-</html>
+if (isset($_SESSION['lista_tarefas'])) {
+  $lista_tarefas = $_SESSION['lista_tarefas'];
+} else {
+  $lista_tarefas = array();
+}
+
+// print '<pre>' . "\n";
+// print_r($_SESSION);
+// print '    </pre>' . "\n";
+// die('Parando o script.');
+
+include "template.php";

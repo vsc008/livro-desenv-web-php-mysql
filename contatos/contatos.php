@@ -1,63 +1,49 @@
-<!DOCTYPE html>
+<?php
 
-<?php session_start(); ?>
+session_start();
 
-<html>
-  <head>
-    <title>Gerenciador de Contatos</title>
-  </head>
-  <body>
-    <h1>Gerenciador de Contatos</h1>
+if (isset($_GET['nome']) && $_GET['nome'] != '') {
+  $contato = array();
+  
+  $contato['nome'] = $_GET['nome'];
 
-    <form>
-      <fieldset>
-        <legend>Novo Contato</legend>
-        <label>
-          Nome:
-          <input type="text" name="nome">
-        </label>
-        <label>
-          Telefone:
-          <input type="tel" name="telefone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{9}" placeholder="DDI-12-34567890">
-        </label>
-        <label>
-          E-mail:
-          <input type="email" name="email">
-        </label>
-        <input type="submit" value="Cadastrar">
-      </fieldset>
-    </form>
+  if (isset($_GET['telefone'])) {
+    $contato['telefone'] = $_GET['telefone'];
+  } else {
+    $contato['telefone'] = '';
+  }
 
-    <?php
+  if (isset($_GET['email'])) {
+    $contato['email'] = $_GET['email'];
+  } else {
+    $contato['email'] = '';
+  }
 
-      if (isset($_GET['nome'])) {
-        $_SESSION['lista_contatos'][] = $_GET['nome'];
-      }
-      if (isset($_GET['telefone'])) {
-        $_SESSION['lista_contatos'][] = $_GET['telefone'];
-      }
-      if (isset($_GET['email'])) {
-        $_SESSION['lista_contatos'][] = $_GET['email'];
-      }
+  if (isset($_GET['descricao'])) {
+    $contato['descricao'] = $_GET['descricao'];
+  } else {
+    $contato['descricao'] = '';
+  }
 
-      $lista_contatos = array();
+  if (isset($_GET['datanasc'])) {
+    $contato['datanasc'] = $_GET['datanasc'];
+  } else {
+    $contato['datanasc'] = '';
+  }
+  
+  if (isset($_GET['favorito'])) {
+    $contato['favorito'] = $_GET['favorito'];
+  } else {
+    $contato['favorito'] = '';
+  }
 
-      if (isset($_SESSION['lista_contatos'])) {
-        $lista_contatos = $_SESSION['lista_contatos'];
-      }
-      
-    ?>
+  $_SESSION['lista_contatos'][] = $contato;
+}
 
-    <table>
-      <tr>
-        <th>Contatos</th>
-      </tr>
-       <?php foreach ($lista_contatos as $contato) : ?>
-        <tr>
-          <td><?php echo $contato; ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+if (isset($_SESSION['lista_contatos'])) {
+  $lista_contatos = $_SESSION['lista_contatos'];
+} else {
+  $lista_contatos = array();
+}
 
-  </body>
-</html>
+include "template.php";

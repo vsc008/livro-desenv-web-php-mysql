@@ -13,3 +13,13 @@ $conexao = mysqli_connect($bdServidor, $bdUsuario, $bdSenha, $bdBanco);
 mysqli_set_charset($conexao, 'utf8');
 
 //printf("Success... %s\n", mysqli_get_host_info($mysqli));
+
+function gravar_tarefa($conexao, $tarefa)
+{
+  $sqlGravar = "INSERT INTO tarefas
+  (nome, descricao, prioridade)
+  VALUES
+  ( '{$tarefa['nome']}', '{$tarefa['descricao']}', {$tarefa['prioridade']} ) ";
+  
+  mysqli_query($conexao, $sqlGravar);
+}

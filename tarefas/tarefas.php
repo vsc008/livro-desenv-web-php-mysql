@@ -16,7 +16,7 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
   }
 
   if (isset($_GET['prazo'])) {
-    $tarefa['prazo'] = $_GET['prazo'];
+    $tarefa['prazo'] = traduz_data_para_banco($_GET['prazo']);
   } else {
     $tarefa['prazo'] = '';
   }
@@ -30,7 +30,7 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
   }
 
   //$_SESSION['lista_tarefas'][] = $tarefa;
-  $gravar_tarefa($conexao, $tarefa);
+  gravar_tarefa($conexao, $tarefa);
 }
 
 // if (isset($_SESSION['lista_tarefas'])) {

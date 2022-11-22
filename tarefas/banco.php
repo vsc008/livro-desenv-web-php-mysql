@@ -20,25 +20,27 @@ function gravar_tarefa($conexao, $tarefa) {
   if (is_null($tarefa['prazo'])) {
 
     $sqlGravar = "INSERT INTO tarefas 
-    (nome, descricao, prioridade, prazo)
+    (nome, descricao, prioridade, prazo, concluida)
     VALUES 
     ( 
       '{$tarefa['nome']}', 
       '{$tarefa['descricao']}', 
       {$tarefa['prioridade']},
-      null
+      null,
+      {$tarefa['concluida']}
     )";
 
   } else {
 
     $sqlGravar = "INSERT INTO tarefas 
-    (nome, descricao, prioridade, prazo)
+    (nome, descricao, prioridade, prazo, concluida)
     VALUES 
     ( 
       '{$tarefa['nome']}', 
       '{$tarefa['descricao']}', 
       {$tarefa['prioridade']},
-      '{$tarefa['prazo']}'
+      '{$tarefa['prazo']}',
+      {$tarefa['concluida']}
     )";
 
   }

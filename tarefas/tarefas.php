@@ -24,9 +24,9 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
   $tarefa['prioridade'] = $_GET['prioridade'];
 
   if (isset($_GET['concluida'])) {
-    $tarefa['concluida'] = $_GET['concluida'];
+    $tarefa['concluida'] = 1;
   } else {
-    $tarefa['concluida'] = '';
+    $tarefa['concluida'] = 0;
   }
 
   //$_SESSION['lista_tarefas'][] = $tarefa;

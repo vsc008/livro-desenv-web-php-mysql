@@ -19,19 +19,19 @@
         <label>
           Telefone:
           <!-- <input type="tel" name="telefone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{9}" placeholder="DDI-12-34567890"> -->
-          <input type="tel" name="telefone">
+          <input type="text" name="telefone">
         </label>
         <label>
           E-mail:
-          <input type="email" name="email">
+          <input type="text" name="email">
         </label>
         <label>
-          Descrição:
+          Descricao:
           <textarea name="descricao"></textarea>
         </label>
         <label>
           Data nascimento:
-          <input type="date" name="datanasc">
+          <input type="text" name="datanasc">
         </label>
         <label>
           Favorito:
@@ -57,8 +57,8 @@
           <td><?php echo $contato['telefone']; ?></td>
           <td><?php echo $contato['email']; ?></td>
           <td><?php echo $contato['descricao']; ?></td>
-          <td><?php echo $contato['datanasc']; ?></td>
-          <td><?php echo $contato['favorito']; ?></td>
+          <td><?php echo traduz_data_para_exibir($contato['datanasc']); ?></td>
+          <td><?php echo traduz_favorito($contato['favorito']); ?></td>
         </tr>
         <?php endforeach; ?>
     </table>

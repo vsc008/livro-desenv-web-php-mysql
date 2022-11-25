@@ -19,7 +19,7 @@
       </label>
 
       <label>
-        Descrição (Opcional):
+        Descricao (Opcional):
         <textarea name="descricao"></textarea>
       </label>
       
@@ -33,13 +33,13 @@
       
         <label>
           <input type="radio" name="prioridade" value="1" checked>Baixa
-          <input type="radio" name="prioridade" value="2">Média
+          <input type="radio" name="prioridade" value="2">Media
           <input type="radio" name="prioridade" value="3">Alta
         </label>
       </fieldset>
       
       <label>
-        Tarefa concluída:
+        Tarefa concluida:
         <input type="checkbox" name="concluida" value="1">
       </label>
       

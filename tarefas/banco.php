@@ -15,7 +15,8 @@ mysqli_set_charset($conexao, 'utf8');
 
 // printf("Success... %s\n", mysqli_get_host_info($conexao));
 
-function gravar_tarefa($conexao, $tarefa) {
+function gravar_tarefa($conexao, $tarefa)
+{
 
   if (is_null($tarefa['prazo'])) {
 
@@ -29,7 +30,6 @@ function gravar_tarefa($conexao, $tarefa) {
       null,
       {$tarefa['concluida']}
     )";
-
   } else {
 
     $sqlGravar = "INSERT INTO tarefas 
@@ -42,8 +42,14 @@ function gravar_tarefa($conexao, $tarefa) {
       '{$tarefa['prazo']}',
       {$tarefa['concluida']}
     )";
-
   }
 
   mysqli_query($conexao, $sqlGravar);
+}
+
+function buscar_tarefa($conexao, $id)
+{
+  $sqlBusca = 'SELECT * FROM tarefas WHERE id = ' . $id;
+  $resultado = mysqli_query($conexao, $sqlBusca);
+  return mysqli_fetch_assoc($resultado);
 }

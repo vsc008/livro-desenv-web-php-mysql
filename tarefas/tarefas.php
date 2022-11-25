@@ -4,6 +4,8 @@ session_start();
 include "banco.php";
 include "ajudantes.php";
 
+$exibir_tabela = true;
+
 if (isset($_GET['nome']) && $_GET['nome'] != '') {
   $tarefa = array();
 

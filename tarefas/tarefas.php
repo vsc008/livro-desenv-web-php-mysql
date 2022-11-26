@@ -54,9 +54,18 @@ function buscar_tarefas($conexao) {
   return $tarefas;
 }
 
-// print '<pre>' . "\n";
-// print_r($_SESSION);
-// print '    </pre>' . "\n";
-// die('Parando o script.');
+$tarefa = array(
+  'id' => 0, 
+  'nome' => '',
+  'descricao' => '', 
+  'prazo' => '', 
+  'prioridade' => 1, 
+  'concluida' => ''
+);
 
 include "template.php";
+
+// print '<pre>' . "\n";
+// print_r($_GET['id']);
+// print '    </pre>' . "\n";
+// die('Parando o script.');

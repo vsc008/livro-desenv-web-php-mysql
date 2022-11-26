@@ -31,7 +31,6 @@ function gravar_tarefa($conexao, $tarefa)
       {$tarefa['concluida']}
     )";
   } else {
-
     $sqlGravar = "INSERT INTO tarefas 
     (nome, descricao, prioridade, prazo, concluida)
     VALUES 
@@ -43,7 +42,6 @@ function gravar_tarefa($conexao, $tarefa)
       {$tarefa['concluida']}
     )";
   }
-
   mysqli_query($conexao, $sqlGravar);
 }
 
@@ -52,4 +50,30 @@ function buscar_tarefa($conexao, $id)
   $sqlBusca = 'SELECT * FROM tarefas WHERE id = ' . $id;
   $resultado = mysqli_query($conexao, $sqlBusca);
   return mysqli_fetch_assoc($resultado);
+}
+
+function editar_tarefa($conexao, $tarefa) {
+
+  if (is_null($tarefa['prazo'])) {
+    $sql = "
+      UPDATE tarefas SET
+        nome = '{$tarefa['nome']}',
+        descricao = '{$tarefa['descricao']}',
+        prioridade = '{$tarefa['prioridade']}',
+        prazo = null,
+        concluida = '{$tarefa['concluida']}'
+      WHERE id = {$tarefa['id']}          
+    ";
+  } else {
+    $sql = "
+      UPDATE tarefas SET
+        nome = '{$tarefa['nome']}',
+        descricao = '{$tarefa['descricao']}',
+        prioridade = '{$tarefa['prioridade']}',
+        prazo = '{$tarefa['prazo']}',
+        concluida = '{$tarefa['concluida']}'
+      WHERE id = {$tarefa['id']}          
+    ";
+  }
+  mysqli_query($conexao, $sql);
 }

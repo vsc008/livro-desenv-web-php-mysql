@@ -33,6 +33,8 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
 
   //$_SESSION['lista_tarefas'][] = $tarefa;
   gravar_tarefa($conexao, $tarefa);
+  header('Location: tarefas.php');
+  die();
 }
 
 // if (isset($_SESSION['lista_tarefas'])) {

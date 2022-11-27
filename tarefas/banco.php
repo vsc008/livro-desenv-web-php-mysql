@@ -15,11 +15,8 @@ mysqli_set_charset($conexao, 'utf8');
 
 // printf("Success... %s\n", mysqli_get_host_info($conexao));
 
-function gravar_tarefa($conexao, $tarefa)
-{
-
+function gravar_tarefa($conexao, $tarefa) {
   if (is_null($tarefa['prazo'])) {
-
     $sqlGravar = "INSERT INTO tarefas 
     (nome, descricao, prioridade, prazo, concluida)
     VALUES 
@@ -45,15 +42,13 @@ function gravar_tarefa($conexao, $tarefa)
   mysqli_query($conexao, $sqlGravar);
 }
 
-function buscar_tarefa($conexao, $id)
-{
+function buscar_tarefa($conexao, $id) {
   $sqlBusca = 'SELECT * FROM tarefas WHERE id = ' . $id;
   $resultado = mysqli_query($conexao, $sqlBusca);
   return mysqli_fetch_assoc($resultado);
 }
 
 function editar_tarefa($conexao, $tarefa) {
-
   if (is_null($tarefa['prazo'])) {
     $sql = "
       UPDATE tarefas SET
@@ -76,4 +71,9 @@ function editar_tarefa($conexao, $tarefa) {
     ";
   }
   mysqli_query($conexao, $sql);
+}
+
+function remover_tarefa($conexao, $id) {
+  $sqlRemover = "DELETE FROM tarefas WHERE id = {$id}";
+  mysqli_query($conexao, $sqlRemover);
 }

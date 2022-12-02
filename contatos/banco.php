@@ -49,3 +49,41 @@ function gravar_contato($conexao, $contato) {
 
   mysqli_query($conexao, $sqlGravar);
 }
+
+function buscar_contato($conexao, $id) {
+  $sqlBusca = 'SELECT * FROM contatos WHERE id = ' . $id;
+  $resultado = mysqli_query($conexao, $sqlBusca);
+  return mysqli_fetch_assoc($resultado);
+}
+
+function editar_contato($conexao, $contato) {
+  if (is_null($contato['datanasc'])) {
+    $sql = "
+      UPDATE contatos SET
+        nome = '{$contato['nome']}',
+        telefone = '{$contato['telefone']}',
+        descricao = '{$contato['descricao']}',
+        email = '{$contato['email']}',
+        datanasc = null,
+        favorito = '{$contato['favorito']}'
+      WHERE id = {$contato['id']}          
+    ";
+  } else {
+    $sql = "
+      UPDATE contatos SET
+        nome = '{$contato['nome']}',
+        telefone = '{$contato['telefone']}',
+        descricao = '{$contato['descricao']}',
+        email = '{$contato['email']}',
+        datanasc = '{$contato['datanasc']}',
+        favorito = '{$contato['favorito']}'
+      WHERE id = {$contato['id']}          
+    ";
+  }
+  mysqli_query($conexao, $sql);
+}
+
+function remover_contato($conexao, $id) {
+  $sqlRemover = "DELETE FROM contatos WHERE id = {$id}";
+  mysqli_query($conexao, $sqlRemover);
+}

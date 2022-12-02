@@ -4,6 +4,8 @@ session_start();
 include "banco.php";
 include "ajudantes.php";
 
+$exibir_tabela = true;
+
 if (isset($_GET['nome']) && $_GET['nome'] != '') {
   $contato = array();
   
@@ -41,6 +43,8 @@ if (isset($_GET['nome']) && $_GET['nome'] != '') {
 
   // $_SESSION['lista_contatos'][] = $contato;
   gravar_contato($conexao, $contato);
+  header('Location: contatos.php');
+  die();
 }
 
 // if (isset($_SESSION['lista_contatos'])) {
@@ -61,5 +65,15 @@ function buscar_contatos($conexao) {
   }
   return $contatos;
 }
+
+$contato = array(
+  'id' => 0, 
+  'nome' => '',
+  'telefone' => '',
+  'email' => '',
+  'descricao' => '', 
+  'datanasc' => '', 
+  'favorito' => ''
+);
 
 include "template.php";

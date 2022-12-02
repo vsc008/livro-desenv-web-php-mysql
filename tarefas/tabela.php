@@ -17,7 +17,11 @@
       <td>
         <a href="editar.php?id=<?php echo $tarefa['id']; ?>">Editar</a>
         <a href="remover.php?id=<?php echo $tarefa['id']; ?>">Remover</a>
+        <a href="duplicar.php?id=<?php echo $tarefa['id']; ?>">Duplicar</a>
       </td>
     </tr>
   <?php endforeach; ?>
 </table>
+<br>
+<a href="removerconcluidas.php">Remover concluídas</a>
+<!-- <input type="button" value="Remover concluídas" onclick='history.back()'> -->

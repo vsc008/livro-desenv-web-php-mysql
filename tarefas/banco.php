@@ -77,3 +77,19 @@ function remover_tarefa($conexao, $id) {
   $sqlRemover = "DELETE FROM tarefas WHERE id = {$id}";
   mysqli_query($conexao, $sqlRemover);
 }
+
+function remover_concluidas($conexao) {
+  $sqlRemover = "DELETE FROM tarefas WHERE concluida = 1";
+  mysqli_query($conexao, $sqlRemover);
+}
+
+function buscar_tarefas($conexao) {
+  $sqlBusca = 'SELECT * FROM tarefas';
+  $resultado = mysqli_query($conexao, $sqlBusca);
+
+  $tarefas = array();
+  while ($tarefa = mysqli_fetch_assoc($resultado)) {
+    $tarefas[] = $tarefa;
+  }
+  return $tarefas;
+}

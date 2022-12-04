@@ -44,3 +44,12 @@ function traduz_concluida($concluida)
   }
   return 'Não';
 }
+
+function tem_post() {
+  $tem_erros = false;
+  $erros_validacao = array();
+  if(count($_POST) > 0) {
+    return true;
+  }
+  return false;
+}
